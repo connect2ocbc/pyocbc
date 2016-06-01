@@ -16,29 +16,19 @@
 #
 # You should have received a copy of the GNU Lesser Public License
 # along with this program.  If not, see [http://www.gnu.org/licenses/].
-"""This module contains object that represents ocbc.CreditCard."""
+"""This module contains object that represents base class for ccbc connections."""
 
-from ocbc.base import OcbcObject
+from ocbc.utils import request
+from ocbc.utils import headers
 
-class CreditCard(OcbcObject):
+class OcbcConnect(object):
+    def __init__(self, url, token):
+        self.url = url
+        self.token = token
 
-    def __init__(self, imageURL, keywords, name, productURL, tagLine, **kwargs):
-        self.imageURL = imageURL
-        self.keywords = keywords
-        self.name = name
-        self.productURL = productURL
-        self.tagLine = tagLine
+    def get(self, args=None):
+        url = self.url
+        if args is not None:
+            url = "{0}/{1}".format(url, args)
 
-    @staticmethod
-    def de_json(data):
-        """
-        Args:
-            data (dict):
-
-        Returns:
-            ocbc.CreditCard:
-        """
-        if not data:
-            return None
-
-        return CreditCard(**data)
+        return request.get(url, headers=headers.get(self.token))

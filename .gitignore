@@ -64,3 +64,6 @@ target/
 #codeenvy
 .codenvy/
 *codenvy
+
+#IntelliJ
+.idea/

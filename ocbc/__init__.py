@@ -16,29 +16,26 @@
 #
 # You should have received a copy of the GNU Lesser Public License
 # along with this program.  If not, see [http://www.gnu.org/licenses/].
-"""This module contains object that represents ocbc.CreditCard."""
+"""A library that provides a Python interface to the OCBC API"""
 
-from ocbc.base import OcbcObject
+from sys import version_info
 
-class CreditCard(OcbcObject):
+from .base import OcbcObject
+from .ocbcconnect import OcbcConnect
+from .nullhandler import NullHandler
+from .error import OcbcError
+from .error import Unauthorized
+from .forex import Forex
+from .rate import Rate
+from .branches import Branches
+from .branch import Branch
+from .atms import Atms
+from .atm import Atm
+from .ccsuggest import CCSuggest
+from .creditcard import CreditCard
 
-    def __init__(self, imageURL, keywords, name, productURL, tagLine, **kwargs):
-        self.imageURL = imageURL
-        self.keywords = keywords
-        self.name = name
-        self.productURL = productURL
-        self.tagLine = tagLine
-
-    @staticmethod
-    def de_json(data):
-        """
-        Args:
-            data (dict):
-
-        Returns:
-            ocbc.CreditCard:
-        """
-        if not data:
-            return None
-
-        return CreditCard(**data)
+__author__ = 'naveen.sanmane@gmail.com'
+__version__ = '1.0.0'
+__all__ = ['OcbcObject', 'OcbcConnect', 'Forex', 'Rate', 'Branches', 'Branch',
+           'Atms', 'Atm', 'CCSuggest', 'CreditCard', 'OcbcError', 'Unauthorized',
+           'NullHandler',]

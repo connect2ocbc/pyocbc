@@ -16,29 +16,26 @@
 #
 # You should have received a copy of the GNU Lesser Public License
 # along with this program.  If not, see [http://www.gnu.org/licenses/].
-"""This module contains object that represents ocbc.CreditCard."""
+"""This module contains object that represents OCBC Errors."""
 
-from ocbc.base import OcbcObject
+class OcbcError(Exception):
+    """This object represents a Ocbc Error."""
 
-class CreditCard(OcbcObject):
-
-    def __init__(self, imageURL, keywords, name, productURL, tagLine, **kwargs):
-        self.imageURL = imageURL
-        self.keywords = keywords
-        self.name = name
-        self.productURL = productURL
-        self.tagLine = tagLine
-
-    @staticmethod
-    def de_json(data):
+    def __init__(self, message):
         """
         Args:
-            data (dict):
+            message (str):
 
         Returns:
-            ocbc.CreditCard:
-        """
-        if not data:
-            return None
 
-        return CreditCard(**data)
+        """
+        super(OcbcError, self).__init__()
+        self.message = message
+
+    def __str__(self):
+        return '%s' % (self.message)
+
+class Unauthorized(OcbcError):
+
+    def __init__(self):
+        super(Unauthorized, self).__init__('Unauthorized')

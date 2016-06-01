@@ -16,29 +16,16 @@
 #
 # You should have received a copy of the GNU Lesser Public License
 # along with this program.  If not, see [http://www.gnu.org/licenses/].
-"""This module contains object that represents ocbc.CreditCard."""
+"""This module contains object that represents NullHandler for logger."""
 
-from ocbc.base import OcbcObject
+import logging
 
-class CreditCard(OcbcObject):
+class NullHandler(logging.Handler):
+    """This object represents a logging NullHandler."""
 
-    def __init__(self, imageURL, keywords, name, productURL, tagLine, **kwargs):
-        self.imageURL = imageURL
-        self.keywords = keywords
-        self.name = name
-        self.productURL = productURL
-        self.tagLine = tagLine
-
-    @staticmethod
-    def de_json(data):
+    def emit(self, record):
         """
         Args:
-            data (dict):
-
-        Returns:
-            ocbc.CreditCard:
+            record (str):
         """
-        if not data:
-            return None
-
-        return CreditCard(**data)
+        pass

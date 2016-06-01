@@ -16,18 +16,17 @@
 #
 # You should have received a copy of the GNU Lesser Public License
 # along with this program.  If not, see [http://www.gnu.org/licenses/].
-"""This module contains object that represents ocbc.CreditCard."""
+"""This module contains object that represents ocbc.CCSuggest."""
 
-from ocbc.base import OcbcObject
+from ocbc.ocbcconnect import OcbcConnect
+from ocbc.creditcard import CreditCard
 
-class CreditCard(OcbcObject):
+class CCSuggest(OcbcConnect):
+    def __init__(self, url, token):
+        super(CCSuggest, self).__init__(url, token)
 
-    def __init__(self, imageURL, keywords, name, productURL, tagLine, **kwargs):
-        self.imageURL = imageURL
-        self.keywords = keywords
-        self.name = name
-        self.productURL = productURL
-        self.tagLine = tagLine
+    def suggest(self, keyword):
+        return CCSuggest.de_json(self.get(keyword))
 
     @staticmethod
     def de_json(data):
@@ -36,9 +35,12 @@ class CreditCard(OcbcObject):
             data (dict):
 
         Returns:
-            ocbc.CreditCard:
+            list of ocbc.CreditCard:
         """
         if not data:
             return None
 
-        return CreditCard(**data)
+        suggestions = []
+        for strjson in data['CCSuggest']:
+            suggestions.append(CreditCard.de_json(strjson))
+        return suggestions
