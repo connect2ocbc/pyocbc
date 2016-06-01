@@ -11,7 +11,7 @@ You can install or upgrade pyocbc with
 
 .. code:: shell
 
-    $ git clone https://github.com/connect2ocbc/pyocbc.git
+    $ git clone https://github.com/connect2ocbc/pyocbc.git && cd pyocbc
     $ python setup.py install
 
 ==========
