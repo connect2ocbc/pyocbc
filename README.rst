@@ -4,7 +4,7 @@
 Installing
 ==========
 
-You can install or upgrade python-telegram-bot with:
+You can install or upgrade pyocbc with
 
 .. code:: shell
 
