@@ -20,6 +20,6 @@
 
 def get(token):
     header = {}
-    header['Authorization'] = "Bearerh {0}".format(token)
+    header['Authorization'] = "Bearer {0}".format(token)
     header['Accept'] = 'application/json'
     return header
